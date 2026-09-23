@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#121315" />
+    <meta name="description" content="GT Spirit — a scroll-driven study of a classic grand-touring coupe, from the cloth reveal to paintwork, engine and structure." />
+    <title>GT Spirit — An Interactive Study in Motion</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23121315'/%3E%3Cpath d='M10 25V12h9m11 3v13h-9' fill='none' stroke='%23f2f2f3' stroke-width='2'/%3E%3Ccircle cx='20' cy='20' r='3' fill='%23d9dce0'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <link rel="stylesheet" href="./src/interactive.css" />
+    <script type="module" src="./src/player.js"></script>
+    <script type="module" src="./src/interactive.js"></script>
+  </head>
+  <body data-intro-fit="cover">
+    <main id="experience" aria-label="GT Spirit realtime reveal">
+      <div id="scroll-track" class="scroll-track">
+        <section id="stage" class="stage" data-frame="" data-target-frame="" data-progress="0" data-status="loading-manifest" aria-label="Realtime 3D intro">
+          <header class="topbar">
+            <div class="signature">
+              <svg class="signature-mark" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M3 12V3h9M18 27h9v-9"/><path class="mark-fine" d="M15 10v10M10 15h10"/></svg>
+              <div>
+                <p class="eyebrow signature-title">GT SPIRIT <span class="slash">/</span> VELOCE</p>
+                <p class="signature-caption">An Interactive Study</p>
+              </div>
+            </div>
+            <div class="top-actions">
+              <span id="quality-label" class="quality-label">REALTIME 3D</span>
+              <button id="info-button" class="text-button" type="button" aria-haspopup="dialog" aria-controls="quality-dialog">
+                Info
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8"/></svg>
+              </button>
+            </div>
+          </header>
+
+          <div id="image-region" class="image-region" aria-busy="true">
+            <div id="first-load" class="first-load" role="status" aria-live="polite">
+              <span class="loading-rule" aria-hidden="true"></span>
+              <p class="eyebrow">GT SPIRIT / VELOCE</p>
+              <p id="first-load-text" class="first-load-text">Loading scene</p>
+              <button id="first-retry" class="line-button" type="button" hidden>Retry</button>
+            </div>
+            <noscript><p class="no-script">Enable JavaScript to explore the GT Spirit.</p></noscript>
+          </div>
+
+          <footer class="controlbar" aria-label="Intro controls">
+            <div class="readout-row">
+              <div class="frame-readout" aria-live="off">
+                <span class="micro-label">FRAME</span>
+                <output id="frame-current" aria-label="Current frame" aria-live="off">—</output>
+                <span class="frame-total">/ <span id="frame-end">—</span></span>
+                <span class="readout-divider" aria-hidden="true"></span>
+                <span class="lens-readout" title="Camera focal length"><span id="lens-value">—</span><span class="lens-unit">mm</span></span>
+              </div>
+              <div id="availability" class="availability"><span class="availability-dot" aria-hidden="true"></span><span id="availability-text">Loading</span></div>
+            </div>
+
+            <div class="timeline-row">
+              <span id="timeline-start" class="timeline-tick" aria-hidden="true">—</span>
+              <div class="seek-wrap">
+                <label class="sr-only" for="frame-seek">Seek: right to advance, left to rewind</label>
+                <input id="frame-seek" type="range" min="0" max="1" step="1" value="0" aria-describedby="seek-help" disabled />
+                <div id="availability-track" class="availability-track" aria-hidden="true"></div>
+              </div>
+              <span id="timeline-end" class="timeline-tick" aria-hidden="true">—</span>
+            </div>
+
+            <div class="transport-row">
+              <p id="seek-help" class="scroll-hint"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v11M4 9l4 4 4-4"/></svg><span>Scroll to explore</span></p>
+              <div id="playback-message" class="playback-message">
+                <span id="status-indicator" class="status-indicator" aria-hidden="true"></span>
+                <span id="playback-state">Loading</span>
+                <span id="pending-frame" class="pending-frame" hidden></span>
+                <button id="retry-button" class="retry-button" type="button" hidden>Retry</button>
+              </div>
+              <div class="transport-actions">
+                <button id="restart-button" class="text-button" type="button" title="Restart intro (Home)" disabled>
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 4.5A5 5 0 1 1 3 8M1.5 4.5h3v-3"/></svg><span>Restart</span>
+                </button>
+                <button id="fullscreen-button" class="text-button" type="button" aria-label="Enter fullscreen" title="Enter fullscreen" hidden>
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4m8-4h4v4M2 10v4h4m8-4v4h-4"/></svg><span id="fullscreen-label">Fullscreen</span>
+                </button>
+              </div>
+            </div>
+          </footer>
+          <div id="live-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+          <div id="reveal-text" aria-hidden="true">
+            <div class="reveal-brand"><span class="reveal-brand-make">GRAND TOURING</span><span class="reveal-brand-model">Veloce</span></div>
+            <div class="reveal-side"><p>ANALOGUE SOUL</p><p>TIMELESS DESIGN</p></div>
+            <div class="reveal-year">EST. 1991</div>
+          </div>
+        </section>
+      </div>
+
+      <dialog id="quality-dialog" class="quality-dialog" aria-labelledby="quality-title" aria-describedby="quality-description">
+        <div class="dialog-inner">
+          <div class="dialog-topline">
+            <p class="eyebrow">SOURCE NOTE <span class="slash">/</span> 01</p>
+            <button id="close-info" class="icon-button" type="button" aria-label="Close info" autofocus><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
+          </div>
+          <h1 id="quality-title">About this study</h1>
+          <p id="quality-description" class="dialog-intro">A love letter to the golden age of grand touring — one continuous 3D scene, from the unveiling to the open garage. Scroll to move through it.</p>
+          <dl class="source-facts">
+            <div><dt>Source</dt><dd id="source-file">Loading…</dd></div>
+            <div><dt>Timeline</dt><dd id="source-timeline">—</dd></div>
+            <div><dt>Renderer</dt><dd id="source-engine">Realtime WebGL</dd></div>
+            <div><dt>Camera</dt><dd id="source-camera">Loading</dd></div>
+            <div><dt>Effects</dt><dd id="source-effects">Shared across every chapter</dd></div>
+          </dl>
+          <p class="source-note">The reveal uses a cloth simulation derived from the original scene — a silk cover drawn back from the bodywork. The same lighting and rendering continue into Paintwork, Engine and Structure. Original source assets are retained.</p>
+          <p class="keyboard-note"><span>Keyboard</span> Arrows: seek · Page Up / Down: skip · Home / End: start / end</p>
+        </div>
+      </dialog>
+    </main>
+
+    <section id="interactive-experience" aria-label="GT Spirit live exploration">
+      <div id="model-loading" role="status" aria-live="polite" aria-atomic="true" hidden>
+        <div class="interactive-loading-inner">
+          <h3 id="model-load-title">Loading</h3>
+          <p id="model-load-detail">Preparing the live model.</p>
+          <progress id="model-load-progress" max="1" value="0" aria-label="Model loading progress"></progress>
+          <div class="interactive-loading-actions">
+            <button id="model-retry" class="interactive-outline-button" type="button" hidden>Retry model</button>
+            <button id="intro-frame-retry" class="interactive-outline-button" type="button" hidden>Retry scene</button>
+            <button id="handoff-return" class="interactive-text-button" type="button">Back to intro</button>
+          </div>
+        </div>
+      </div>
+      <div id="interactive-track" class="interactive-track">
+        <div id="interactive-stage" class="interactive-stage" data-phase="color" data-ui-visible="false">
+          <div class="interactive-viewport">
+            <div id="vehicle-canvas-host" role="img" aria-label="GT coupe live 3D view" aria-describedby="interaction-hint" inert></div>
+            <div id="vehicle-hotspots" aria-label="Engine details" inert></div>
+          </div>
+
+          <header class="interactive-topbar" data-interactive-ui inert aria-hidden="true">
+            <p class="interactive-brand">GT SPIRIT <span class="interactive-brand-divider" aria-hidden="true">/</span> <span class="interactive-brand-caption">ATELIER</span></p>
+            <nav id="chapter-nav" aria-label="Chapters">
+              <button type="button" data-chapter="intro" aria-controls="experience"><span class="chapter-nav-index" aria-hidden="true">01</span>Intro</button>
+              <button type="button" data-chapter="color" aria-controls="interactive-stage" aria-current="step"><span class="chapter-nav-index" aria-hidden="true">02</span>Paint</button>
+              <button type="button" data-chapter="hood" aria-controls="interactive-stage"><span class="chapter-nav-index" aria-hidden="true">03</span>Engine</button>
+              <button type="button" data-chapter="structure" aria-controls="interactive-stage"><span class="chapter-nav-index" aria-hidden="true">04</span>Structure</button>
+            </nav>
+            <p class="interactive-realtime">GARAGE / LIVE</p>
+          </header>
+
+          <div class="interactive-chapterbar" data-interactive-ui inert aria-hidden="true">
+            <div class="interactive-title-row">
+              <span id="chapter-number">02</span>
+              <h2 id="chapter-title">Paintwork</h2>
+            </div>
+            <p id="chapter-description">Scroll to preview · Click to select</p>
+          </div>
+          <p id="bridge-status" role="status" aria-live="polite" hidden>Scroll to explore</p>
+
+          <aside id="part-card" aria-labelledby="part-name" data-interactive-ui hidden>
+            <div class="interactive-part-heading">
+              <h3 id="part-name">Part details</h3>
+              <button id="part-close" type="button" aria-label="Close part details">×</button>
+            </div>
+            <dl class="interactive-part-facts">
+              <div><dt>Part ID</dt><dd id="part-id">—</dd></div>
+              <div><dt>Assembly</dt><dd id="part-group">—</dd></div>
+            </dl>
+            <p id="part-note">Select a part to see details.</p>
+          </aside>
+
+          <div class="interactive-controls" data-interactive-ui inert aria-hidden="true">
+            <div class="interactive-selected-color">
+              <div class="interactive-color-readout" role="status" aria-live="polite" aria-atomic="true">
+                <span id="selected-color-label">Argento</span>
+                <span id="selected-color-code">Originale</span>
+              </div>
+              <div class="interactive-paint-mode">
+                <span id="color-mode-label">Auto</span>
+                <button id="color-auto" class="interactive-text-button" type="button" hidden>Auto</button>
+                <button id="color-restore" class="interactive-text-button" type="button" hidden>Restore</button>
+              </div>
+            </div>
+
+            <div id="color-controls" class="interactive-control-panel" role="group" aria-labelledby="color-controls-label">
+              <p id="color-controls-label" class="sr-only">Paint: select a color for this chapter</p>
+              <div class="interactive-color-options">
+                <button class="interactive-color-button" type="button" data-color="silver" data-name="Argento" aria-pressed="false" aria-label="Select Argento, the original finish" title="Argento · Originale">
+                  <span class="interactive-color-swatch" aria-hidden="true"></span>
+                  <span class="interactive-color-copy"><span>Argento</span><span>Originale</span></span>
+                </button>
+                <button class="interactive-color-button" type="button" data-color="green" data-name="Verde" aria-pressed="false" aria-label="Select Verde, HEX #34EB61" title="Verde · #34EB61">
+                  <span class="interactive-color-swatch" aria-hidden="true"></span>
+                  <span class="interactive-color-copy"><span>Verde</span><span>#34EB61</span></span>
+                </button>
+                <button class="interactive-color-button" type="button" data-color="orange" data-name="Arancio" aria-pressed="false" aria-label="Select Arancio, HEX #EB5234" title="Arancio · #EB5234">
+                  <span class="interactive-color-swatch" aria-hidden="true"></span>
+                  <span class="interactive-color-copy"><span>Arancio</span><span>#EB5234</span></span>
+                </button>
+                <button class="interactive-color-button" type="button" data-color="lime" data-name="Giallo" aria-pressed="false" aria-label="Select Giallo, HEX #DBF054" title="Giallo · #DBF054">
+                  <span class="interactive-color-swatch" aria-hidden="true"></span>
+                  <span class="interactive-color-copy"><span>Giallo</span><span>#DBF054</span></span>
+                </button>
+              </div>
+            </div>
+
+            <div id="hood-controls" class="interactive-control-panel" role="group" aria-labelledby="hood-controls-label" hidden>
+              <div class="interactive-control-heading">
+                <p id="hood-controls-label" class="interactive-control-label">Hood</p>
+                <output id="hood-progress" class="interactive-state-readout" aria-label="Hood opening" aria-live="off">0%</output>
+              </div>
+              <div class="interactive-segmented" role="group" aria-label="Hood position">
+                <button type="button" data-hood="closed" aria-pressed="true">Close</button>
+                <button type="button" data-hood="open" aria-pressed="false">Open</button>
+              </div>
+              <details id="hood-note-details" class="interactive-mini-note">
+                <summary id="hood-note-label">Hood notes</summary>
+                <p id="hood-note">Hood geometry is a preview; intersections remain.</p>
+              </details>
+            </div>
+
+            <div id="structure-controls" class="interactive-control-panel" role="group" aria-labelledby="structure-controls-label" hidden>
+              <div class="interactive-control-heading">
+                <p id="structure-controls-label" class="interactive-control-label">Structure</p>
+                <output id="explode-progress" class="interactive-state-readout" aria-label="Expansion" aria-live="off">0%</output>
+              </div>
+              <div class="interactive-structure-row">
+                <div class="interactive-segmented" role="group" aria-label="Assembly state">
+                  <button type="button" data-explode="assembled" aria-pressed="true">Assemble</button>
+                  <button type="button" data-explode="expanded" aria-pressed="false">Expand</button>
+                </div>
+                <div class="interactive-segmented" role="group" aria-label="Layout direction">
+                  <button type="button" data-layout="vertical" aria-pressed="true" title="Vertical layout">Vertical</button>
+                  <button type="button" data-layout="horizontal" aria-pressed="false" title="Horizontal layout">Horizontal</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="interactive-footer" data-interactive-ui inert aria-hidden="true">
+            <div class="interactive-footer-row">
+              <p id="interaction-hint">Drag to rotate</p>
+              <details id="asset-note">
+                <summary>Info<span class="interactive-note-mark" aria-hidden="true">＋</span></summary>
+                <div class="interactive-asset-content">
+                  <p class="interactive-asset-label">MODEL / MATERIAL NOTE</p>
+                  <p>A visual study of a classic grand-touring coupe. Model parts are reference geometry, not manufacturing CAD.</p>
+                  <p>Argento retains the original materials. Every chapter shares the same live lighting and renderer.</p>
+                  <p>Hood motion is a visual preview.</p>
+                  <p>All 968 mechanical parts are retained. Exploded layouts are for viewing, not repair instructions.</p>
+                  <p><a href="./使用说明.html" target="_blank" rel="noopener">Controls & notes</a></p>
+                </div>
+              </details>
+            </div>
+            <progress id="section-progress" max="1" value="0" aria-label="Explore progress"></progress>
+          </footer>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GT Spirit — Controls & Notes</title>
+<style>body{margin:48px auto;padding:0 24px;max-width:920px;background:#10110f;color:#e9e8df;font:15px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}h1{font-size:28px;font-weight:500}h2{margin-top:36px;font-size:20px}a{color:#bed3a7}code,pre{font-family:ui-monospace,monospace;background:#1c2019}pre{padding:16px;overflow:auto}table{border-collapse:collapse;width:100%}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #34392e;padding:10px}strong{color:#fff}small{color:#a5aa9c}</style>
+</head>
+<body>
+<h1>GT Spirit / Veloce</h1>
+<p>Explore one realtime 3D scene from the cloth reveal through Paint, Engine and Structure. Designed for desktop viewing.</p>
+<h2>Controls</h2>
+<table>
+<tr><th>Chapter</th><th>Explore</th></tr>
+<tr><td>Intro</td><td>Scroll forward or back through the reveal. Use the timeline to seek. Fullscreen includes the whole experience.</td></tr>
+<tr><td>Paint</td><td>Scroll to preview colors. Select a swatch for this chapter; select Auto to resume the preview. Paint returns smoothly to the original silver before Engine.</td></tr>
+<tr><td>Engine</td><td>Scroll to open the hood, or use Open and Close. Drag horizontally for a limited view adjustment.</td></tr>
+<tr><td>Structure</td><td>Scroll to expand or assemble. Select Vertical or Horizontal for the layout, then select a part to see its details.</td></tr>
+</table>
+<p>Scrolling can take over a button transition at any time. Engine and Structure stay silver. Your selected paint returns when you scroll back into Paint; Intro always stays silver.</p>
+<h2>Run locally</h2>
+<p>Run the launcher beside this project, or use Node.js 22 or newer:</p>
+<pre>npm run preview
+# Choose another port if needed:
+node scripts/server.mjs --root dist --port 4177</pre>
+<p>Keep the terminal open. Press Control+C to stop. Assets and dependencies are local; the experience does not require a CDN or upload models.</p>
+<h2>Model notes</h2>
+<p>The intro is realtime 3D. The source camera animation and precomputed cloth deformation follow frames 30–504 of the original scene. Scrolling selects the animation pose; the browser renders its geometry, materials, lighting and shadows at the current viewport resolution. No PNG sequence or video is played.</p>
+<p>All chapters share the same scene and renderer, keeping lighting, reflections and post-processing consistent. Render resolution may decrease on slower hardware to keep interaction responsive. Desktop camera framing fills the stage with centered cropping where the viewport aspect ratio differs.</p>
+<p>The live vehicle retains the source exterior, textures and all 968 mechanical reference parts. The CAD body structure uses a satin metal finish. Its internal A-pillar reinforcements appear during disassembly. These parts are for visual exploration, not manufacturing or repair. The original Blender project and original image sequences remain intact as source archives.</p>
+<p>Hood motion remains a preview. The source hood's contact with the light covers and window frame is unchanged. The source does not include verified hinge dimensions or a complete inner hood structure. The exploded layouts are viewing arrangements, not tested disassembly paths.</p>
+<p>The surrounding garage derives from the same source scene. Browser rendering approximates the Blender reference while using one consistent look throughout the website. Browser axes are X left/right, Y up/down and Z forward.</p>
+<h2>Development</h2>
+<pre>npm run verify
+npm run build
+npm run dev</pre>
+<p>Verification checks source integrity, camera and cloth animation data, presentation geometry, model assets and state invariants. A successful build does not validate the hood geometry. Visual checks prioritize desktop viewports.</p>
+<p>The original camera timeline remains in <code>public/scene.json</code>. The original image sequence remains in <code>public/frames/</code> and the archived text-free sequence in <code>public/clean-frames/</code>. Model provenance is recorded in <code>public/models/vehicle.json</code> and <code>public/models/stage.json</code>.</p>
+<small>Local preview. No public deployment.</small>
+</body>
+</html>
