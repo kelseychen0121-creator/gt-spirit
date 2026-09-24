@@ -1344,29 +1344,42 @@ export class VehicleScene {
     this._keyLight = this._studio.keyLight;
   }
 
-  // Big modern title for the opening cover: a camera-locked plane held just
+  // Big modern title for the reveal finale: a camera-locked plane held just
   // behind the car in view depth, so the bodywork genuinely occludes it.
   _makeCoverTitle() {
     const canvas = document.createElement('canvas');
     canvas.width = 2048;
     canvas.height = 460;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = '800 330px -apple-system, "Helvetica Neue", Arial, "Segoe UI", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    try { ctx.letterSpacing = '4px'; } catch {}
-    ctx.fillStyle = 'rgba(238, 240, 243, 0.97)';
-    ctx.fillText('VELOCE', canvas.width / 2, canvas.height / 2 + 16);
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 4;
+    const family = '"Inter", -apple-system, "Helvetica Neue", Arial, "Segoe UI", sans-serif';
+    const draw = () => {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(238, 240, 243, 0.97)';
+      ctx.textBaseline = 'alphabetic';
+      ctx.textAlign = 'left';
+      ctx.font = `500 380px ${family}`;
+      const word = 'Veloce';
+      const wordWidth = ctx.measureText(word).width;
+      const markWidth = ctx.measureText('TM').width;
+      const x = (canvas.width - (wordWidth + markWidth + 12)) / 2;
+      ctx.fillText(word, x, 356);
+      ctx.font = `500 96px ${family}`;
+      ctx.fillText('TM', x + wordWidth + 12, 128);
+      texture.needsUpdate = true;
+    };
+    draw();
+    if (typeof document !== 'undefined' && document.fonts?.ready) {
+      document.fonts.ready.then(draw).catch(() => {});
+    }
     const material = new THREE.MeshBasicMaterial({
       map: texture, transparent: true, opacity: 0,
       depthTest: true, depthWrite: false, toneMapped: false,
     });
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 460 / 2048), material);
-    mesh.name = 'Cover title VELOCE';
+    mesh.name = 'Cover title Veloce';
     mesh.frustumCulled = false;
     this._camera.add(mesh);
     this._coverTitle = mesh;
@@ -1387,8 +1400,8 @@ export class VehicleScene {
     const dist = this._camera.position.distanceTo(this._coverTitleFocus) + 1.15;
     const halfW = dist * Math.tan(THREE.MathUtils.degToRad(53.13 / 2));
     const halfH = dist * Math.tan(THREE.MathUtils.degToRad(36.87 / 2));
-    mesh.position.set(0, halfH * 0.3, -dist);
-    const width = 2 * halfW * 0.94;
+    const width = 2 * halfW * 0.78;
+    mesh.position.set(-halfW * 0.92 + width * 0.5, halfH * 0.42, -dist);
     mesh.scale.set(width, width, 1);
   }
 
