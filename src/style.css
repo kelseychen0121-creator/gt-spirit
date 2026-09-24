@@ -260,7 +260,8 @@ progress::-moz-progress-bar { background: var(--signal); }
 #reveal-text > div { position: absolute; opacity: 0; transform: translateY(16px); transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1); }
 #stage[data-reveal-text="true"] #reveal-text > div { opacity: 1; transform: translateY(0); }
 #stage[data-reveal-text="true"] #reveal-text .reveal-tagline { transition-delay: .25s; }
-#reveal-text .reveal-tagline { bottom: max(96px, 14%); left: max(34px, env(safe-area-inset-left)); font-family: 'Inter', var(--sans); font-size: clamp(13px, 1.2vw, 16px); font-weight: 500; letter-spacing: .06em; white-space: nowrap; color: #f4f4f6; text-shadow: 0 1px 3px rgb(5 6 8 / 70%), 0 0 18px rgb(5 6 8 / 40%); }
+#reveal-text .reveal-tagline { bottom: max(96px, 14%); left: max(34px, env(safe-area-inset-left)); font-family: 'Inter', var(--sans); font-size: clamp(12px, 1.15vw, 15px); font-weight: 400; letter-spacing: .04em; line-height: 1.75; color: #f4f4f6; text-shadow: 0 1px 3px rgb(5 6 8 / 70%), 0 0 18px rgb(5 6 8 / 40%); }
+#reveal-text .reveal-tagline p + p { margin-top: 12px; }
 @media (max-width: 620px) {
-  #reveal-text .reveal-tagline { font-size: 12px; }
+  #reveal-text .reveal-tagline { font-size: 11px; }
 }

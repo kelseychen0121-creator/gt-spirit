@@ -1360,14 +1360,11 @@ export class VehicleScene {
       ctx.fillStyle = 'rgba(238, 240, 243, 0.97)';
       ctx.textBaseline = 'alphabetic';
       ctx.textAlign = 'left';
-      ctx.font = `500 380px ${family}`;
+      ctx.font = `400 380px ${family}`;
       const word = 'Veloce';
       const wordWidth = ctx.measureText(word).width;
-      const markWidth = ctx.measureText('TM').width;
-      const x = (canvas.width - (wordWidth + markWidth + 12)) / 2;
+      const x = (canvas.width - wordWidth) / 2;
       ctx.fillText(word, x, 356);
-      ctx.font = `500 96px ${family}`;
-      ctx.fillText('TM', x + wordWidth + 12, 128);
       texture.needsUpdate = true;
     };
     draw();
