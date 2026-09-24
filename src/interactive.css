@@ -79,8 +79,11 @@ body[data-presentation="suspended"] #interactive-stage { visibility: hidden; }
 #interactive-experience #color-mode-label { color: var(--interactive-muted); font-size: 11px; font-weight: 500; white-space: nowrap; }
 #interactive-experience .interactive-text-button { padding: 8px 4px; border: 0; background: transparent; color: var(--interactive-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .03em; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgb(215 218 224 / 45%); transition: color .2s ease, text-decoration-color .2s ease; }
 #interactive-experience .interactive-control-panel { position: relative; display: flex; align-items: center; flex: 0 0 auto; gap: 18px; }
-#interactive-experience .interactive-color-options { display: flex; gap: 10px; }
-#interactive-experience .interactive-color-button { position: relative; display: flex; align-items: center; justify-content: center; min-width: 104px; height: 52px; padding: 0 20px; border: 2px solid rgb(255 255 255 / 24%); border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 14px; font-weight: 700; letter-spacing: .03em; box-shadow: 0 4px 14px rgb(0 0 0 / 28%); transition: transform .2s cubic-bezier(.3, 1.2, .5, 1), border-color .2s ease, box-shadow .2s ease; }
+#interactive-experience #color-controls { position: fixed; left: 50%; bottom: calc(var(--edge-bottom, 12px) + 44px); transform: translateX(-50%); z-index: 4; width: min(70vw, 1150px); display: flex; align-items: center; gap: 16px; padding: 10px 14px; border: 1px solid rgb(235 236 238 / 14%); border-radius: 16px; background: rgb(10 14 20 / 62%); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); box-shadow: 0 14px 40px rgb(0 0 0 / 45%), inset 0 1px 0 rgb(255 255 255 / 5%); }
+#interactive-experience #color-controls .interactive-selected-color { gap: 14px; }
+#interactive-experience #color-controls #selected-color-label { font-size: 24px; }
+#interactive-experience .interactive-color-options { display: flex; gap: 10px; flex: 1 1 auto; }
+#interactive-experience .interactive-color-button { position: relative; display: flex; align-items: center; justify-content: center; flex: 1 1 0; min-width: 0; height: 60px; padding: 0 14px; border: 2px solid rgb(255 255 255 / 24%); border-radius: 10px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 15px; font-weight: 700; letter-spacing: .03em; box-shadow: 0 4px 14px rgb(0 0 0 / 28%); transition: transform .2s cubic-bezier(.3, 1.2, .5, 1), border-color .2s ease, box-shadow .2s ease; }
 #interactive-experience .interactive-color-button[data-preview="true"] { border-color: rgb(255 255 255 / 65%); }
 #interactive-experience button[data-color="silver"].interactive-color-button { background: linear-gradient(150deg, #e2e4e7 0%, #c3c7cc 55%, #a9adb3 100%); color: #17191d; }
 #interactive-experience button[data-color="green"].interactive-color-button { background: #34eb61; color: #0c2413; }
@@ -191,8 +194,12 @@ body[data-presentation="suspended"] #interactive-experience #model-loading { vis
   #interactive-experience .interactive-color-readout { gap: 4px; }
   #interactive-experience .interactive-paint-mode { position: absolute; left: 0; top: 100%; height: 44px; }
   #interactive-experience .interactive-paint-mode button { font-size: 10px; padding-inline: 0; }
+  #interactive-experience #color-controls { width: calc(100vw - 20px); bottom: calc(var(--edge-bottom) + 48px); gap: 8px; padding: 8px 10px; }
+  #interactive-experience #color-controls .interactive-selected-color { display: flex; max-width: none; }
+  #interactive-experience #color-controls .interactive-paint-mode { position: static; height: auto; }
+  #interactive-experience #color-controls #selected-color-label { font-size: 16px; }
   #interactive-experience .interactive-color-options { gap: 7px; }
-  #interactive-experience .interactive-color-button { min-width: 0; height: 44px; padding: 0 13px; font-size: 12px; border-radius: 10px; }
+  #interactive-experience .interactive-color-button { height: 44px; padding: 0 8px; font-size: 12px; border-radius: 10px; }
   #interactive-experience .interactive-control-panel { gap: 6px; }
   #interactive-experience #hood-controls,
   #interactive-experience #structure-controls { flex: 1 1 auto; justify-content: flex-end; }

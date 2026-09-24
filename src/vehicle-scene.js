@@ -1378,8 +1378,7 @@ export class VehicleScene {
     const frame = this._state.introFrame;
     let opacity = 0;
     if (frame != null) {
-      const fadeOut = 1 - THREE.MathUtils.smoothstep(frame, 148, 235);
-      opacity = 0.94 * fadeOut;
+      opacity = 0.94 * THREE.MathUtils.smoothstep(frame, 400, 452);
     }
     const material = mesh.material;
     if (Math.abs(material.opacity - opacity) > 0.002) material.opacity = opacity;

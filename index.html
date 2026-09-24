@@ -84,7 +84,7 @@
           </footer>
           <div id="live-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
           <div id="reveal-text" aria-hidden="true">
-            <div class="reveal-brand"><span class="reveal-brand-make">GRAND TOURING</span><span class="reveal-brand-model">Veloce</span></div>
+            <div class="reveal-brand"><span class="reveal-brand-make">GRAND TOURING</span></div>
             <div class="reveal-year">EST. 1991</div>
           </div>
         </section>
@@ -162,20 +162,19 @@
           </aside>
 
           <div class="interactive-controls" data-interactive-ui inert aria-hidden="true">
-            <div class="interactive-selected-color">
-              <div class="interactive-color-readout" role="status" aria-live="polite" aria-atomic="true">
-                <span id="selected-color-label">Argento</span>
-                <span id="selected-color-code">Originale</span>
-              </div>
-              <div class="interactive-paint-mode">
-                <span id="color-mode-label">Auto</span>
-                <button id="color-auto" class="interactive-text-button" type="button" hidden>Auto</button>
-                <button id="color-restore" class="interactive-text-button" type="button" hidden>Restore</button>
-              </div>
-            </div>
-
             <div id="color-controls" class="interactive-control-panel" role="group" aria-labelledby="color-controls-label">
               <p id="color-controls-label" class="sr-only">Paint: select a color for this chapter</p>
+              <div class="interactive-selected-color">
+                <div class="interactive-color-readout" role="status" aria-live="polite" aria-atomic="true">
+                  <span id="selected-color-label">Argento</span>
+                  <span id="selected-color-code">Originale</span>
+                </div>
+                <div class="interactive-paint-mode">
+                  <span id="color-mode-label">Auto</span>
+                  <button id="color-auto" class="interactive-text-button" type="button" hidden>Auto</button>
+                  <button id="color-restore" class="interactive-text-button" type="button" hidden>Restore</button>
+                </div>
+              </div>
               <div class="interactive-color-options">
                 <button class="interactive-color-button" type="button" data-color="silver" data-name="Argento" aria-pressed="false" aria-label="Select Argento, the original finish" title="Argento · Originale">Argento</button>
                 <button class="interactive-color-button" type="button" data-color="green" data-name="Verde" aria-pressed="false" aria-label="Select Verde, HEX #34EB61" title="Verde · #34EB61">Verde</button>
