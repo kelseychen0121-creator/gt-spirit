@@ -431,7 +431,6 @@ function updateControls() {
   host.inert = !controlsVisible;
   byId('vehicle-hotspots').inert = !controlsVisible;
   const bridge = trackPosition < BRIDGE.end;
-  setText('chapter-number', bridge ? '01 — 02' : chapter.number);
   setText('chapter-title', bridge ? 'GT Spirit' : chapter.title);
   setText('chapter-description', bridge ? '' : chapter.description);
   const paint = PALETTE.find((entry) => entry.id === color);

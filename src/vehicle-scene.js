@@ -1313,8 +1313,10 @@ export class VehicleScene {
     this._shadowBoundsDirty = true;
     this._scratchBox = new THREE.Box3();
     this._cameraRig = new CameraRig(this._camera);
+    this._scene.add(this._camera);
     this._loader = new GLTFLoader();
     this._makeStudio();
+    this._makeCoverTitle();
     this._introCloth = new IntroCloth();
     this._scene.add(this._introCloth.group);
     this._studio.setAnimatedCloth(this._introCloth);
@@ -1340,6 +1342,55 @@ export class VehicleScene {
     this._floor = this._studio.floor;
     this._grid = this._studio.grid;
     this._keyLight = this._studio.keyLight;
+  }
+
+  // Big modern title for the opening cover: a camera-locked plane held just
+  // behind the car in view depth, so the bodywork genuinely occludes it.
+  _makeCoverTitle() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 2048;
+    canvas.height = 460;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '800 330px -apple-system, "Helvetica Neue", Arial, "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    try { ctx.letterSpacing = '4px'; } catch {}
+    ctx.fillStyle = 'rgba(238, 240, 243, 0.97)';
+    ctx.fillText('VELOCE', canvas.width / 2, canvas.height / 2 + 16);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.anisotropy = 4;
+    const material = new THREE.MeshBasicMaterial({
+      map: texture, transparent: true, opacity: 0,
+      depthTest: true, depthWrite: false, toneMapped: false,
+    });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 460 / 2048), material);
+    mesh.name = 'Cover title VELOCE';
+    mesh.frustumCulled = false;
+    this._camera.add(mesh);
+    this._coverTitle = mesh;
+    this._coverTitleFocus = new THREE.Vector3(0, 0.55, 0);
+  }
+
+  _updateCoverTitle() {
+    const mesh = this._coverTitle;
+    const frame = this._state.introFrame;
+    let opacity = 0;
+    if (frame != null) {
+      const fadeOut = 1 - THREE.MathUtils.smoothstep(frame, 148, 235);
+      opacity = 0.94 * fadeOut;
+    }
+    const material = mesh.material;
+    if (Math.abs(material.opacity - opacity) > 0.002) material.opacity = opacity;
+    mesh.visible = opacity > 0.004;
+    if (!mesh.visible) return;
+    const dist = this._camera.position.distanceTo(this._coverTitleFocus) + 1.15;
+    const halfW = dist * Math.tan(THREE.MathUtils.degToRad(53.13 / 2));
+    const halfH = dist * Math.tan(THREE.MathUtils.degToRad(36.87 / 2));
+    mesh.position.set(0, halfH * 0.3, -dist);
+    const width = 2 * halfW * 0.94;
+    mesh.scale.set(width, width, 1);
   }
 
   _resize() {
@@ -1400,6 +1451,7 @@ export class VehicleScene {
       ? 1 - THREE.MathUtils.smoothstep(clamp(this._state.explodeProgress, 0, 1), 0, 0.35) : 1;
     this._lamps?.setFrame(this._state.introFrame, lampLevel);
     this._bloom?.setStrength(glareStrength(this._state.introFrame));
+    if (this._coverTitle) this._updateCoverTitle();
     if (this._introCloth) {
       // The frozen reveal cloth reads as clutter in the top-down parts grid.
       const gridView = this._state.phase === 'structure' && this._state.layout === 'horizontal'

@@ -12,8 +12,7 @@ body[data-presentation="suspended"] #interactive-stage { visibility: hidden; }
   --interactive-line: rgb(235 236 238 / 15%);
   --interactive-gold: #d9dce0;
   --interactive-gold-strong: #eff0f2;
-  --interactive-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --interactive-serif: "Fraunces", "Songti SC", "STSong", Georgia, serif;
+  --interactive-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
   position: relative;
   min-width: 0;
   color: var(--interactive-text);
@@ -60,10 +59,7 @@ body[data-presentation="suspended"] #interactive-stage { visibility: hidden; }
 #interactive-experience .interactive-stage[data-ui-visible="true"] [data-interactive-ui] :is(button, summary, input, a),
 #interactive-experience .interactive-stage[data-ui-visible="true"] #part-card { pointer-events: auto; }
 #interactive-experience .interactive-topbar { top: var(--edge-top); left: var(--safe-left); right: var(--safe-right); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; height: 48px; }
-#interactive-experience .interactive-brand { display: flex; align-items: baseline; gap: 10px; font: 600 13px/1.5 var(--interactive-mono); letter-spacing: .2em; white-space: nowrap; }
-#interactive-experience .interactive-brand-divider { color: var(--interactive-gold); opacity: .85; }
-#interactive-experience .interactive-brand-caption { color: var(--interactive-muted); font-family: var(--interactive-serif); font-style: italic; font-size: 15px; font-weight: 500; letter-spacing: .06em; }
-#interactive-experience .interactive-realtime { justify-self: end; color: var(--interactive-faint); font: 600 10px/1.5 var(--interactive-mono); letter-spacing: .16em; white-space: nowrap; }
+#interactive-experience .interactive-brand { display: flex; align-items: baseline; gap: 10px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 15px; font-weight: 700; letter-spacing: .08em; white-space: nowrap; }
 #interactive-experience #chapter-nav { display: flex; gap: 3px; padding: 4px; border: 1px solid rgb(235 236 238 / 12%); border-radius: 999px; background: rgb(10 14 20 / 58%); backdrop-filter: blur(18px) saturate(1.25); -webkit-backdrop-filter: blur(18px) saturate(1.25); box-shadow: 0 10px 32px rgb(0 0 0 / 40%), inset 0 1px 0 rgb(255 255 255 / 5%); }
 #interactive-experience #chapter-nav button { position: relative; display: inline-flex; align-items: baseline; gap: 9px; padding: 13px 24px; border: 0; border-radius: 999px; background: transparent; color: #a0a4aa; font-family: var(--interactive-mono); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; transition: background .28s cubic-bezier(.4, 0, .2, 1), color .28s ease, box-shadow .28s ease; }
 #interactive-experience #chapter-nav .chapter-nav-index { color: var(--interactive-faint); font-size: 9px; font-weight: 600; letter-spacing: .08em; transition: color .28s ease; }
@@ -71,35 +67,27 @@ body[data-presentation="suspended"] #interactive-stage { visibility: hidden; }
 #interactive-experience #chapter-nav button[aria-current="step"] .chapter-nav-index { color: rgb(20 22 25 / 62%); }
 #interactive-experience .interactive-chapterbar { top: calc(var(--edge-top) + 60px); left: var(--safe-left); display: flex; gap: 18px; align-items: baseline; text-shadow: 0 1px 3px rgb(5 6 8 / 85%), 0 0 12px rgb(5 6 8 / 40%); }
 #interactive-experience .interactive-title-row { display: flex; align-items: baseline; gap: 14px; }
-#interactive-experience #chapter-number { color: var(--interactive-gold); font: italic 600 17px/1 var(--interactive-serif); letter-spacing: .06em; }
-#interactive-experience #chapter-number::before { content: "№ "; font-size: 12px; color: var(--interactive-faint); }
-#interactive-experience #chapter-title { font-family: var(--interactive-serif); font-size: 52px; line-height: 1.06; font-weight: 600; letter-spacing: 0; }
-#interactive-experience #chapter-description { color: #b8bcc1; font-family: var(--interactive-mono); font-size: 10px; font-weight: 500; line-height: 1.5; letter-spacing: .2em; text-transform: uppercase; }
+#interactive-experience #chapter-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 46px; line-height: 1.06; font-weight: 700; letter-spacing: 0; }
+#interactive-experience #chapter-description { color: #b8bcc1; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 12px; font-weight: 500; line-height: 1.5; letter-spacing: .04em; }
 #interactive-experience #bridge-status { position: absolute; z-index: 3; left: var(--safe-left); right: var(--safe-right); bottom: calc(var(--edge-bottom) + 16px); color: var(--interactive-muted); font-size: 11px; line-height: 1.6; pointer-events: none; }
 #interactive-experience .interactive-controls { bottom: calc(var(--edge-bottom) + 52px); left: var(--safe-left); right: var(--safe-right); display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 56px; }
-#interactive-experience .interactive-selected-color { display: flex; align-items: center; gap: 22px; min-width: 0; }
-#interactive-experience .interactive-color-readout { display: grid; gap: 4px; min-width: 0; }
-#interactive-experience #selected-color-label { font-family: var(--interactive-serif); font-size: 36px; font-weight: 600; font-style: italic; line-height: 1.2; letter-spacing: .01em; }
+#interactive-experience .interactive-selected-color { display: flex; align-items: center; gap: 22px; min-width: 0; flex: 0 0 auto; }
+#interactive-experience .interactive-color-readout { display: grid; gap: 4px; min-width: 0; flex: 0 0 auto; white-space: nowrap; }
+#interactive-experience #selected-color-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 32px; font-weight: 700; line-height: 1.2; letter-spacing: .01em; }
 #interactive-experience #selected-color-code { color: var(--interactive-muted); font: 600 10px/1.5 var(--interactive-mono); letter-spacing: .14em; }
 #interactive-experience .interactive-paint-mode { display: flex; align-items: center; gap: 12px; }
 #interactive-experience #color-mode-label { color: var(--interactive-muted); font-size: 11px; font-weight: 500; white-space: nowrap; }
-#interactive-experience .interactive-text-button { padding: 8px 4px; border: 0; background: transparent; color: var(--interactive-text); font-family: var(--interactive-mono); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgb(215 218 224 / 45%); transition: color .2s ease, text-decoration-color .2s ease; }
+#interactive-experience .interactive-text-button { padding: 8px 4px; border: 0; background: transparent; color: var(--interactive-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .03em; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgb(215 218 224 / 45%); transition: color .2s ease, text-decoration-color .2s ease; }
 #interactive-experience .interactive-control-panel { position: relative; display: flex; align-items: center; flex: 0 0 auto; gap: 18px; }
-#interactive-experience .interactive-color-options { display: flex; gap: 8px; }
-#interactive-experience .interactive-color-button { position: relative; display: flex; flex-direction: column; align-items: center; gap: 9px; width: 62px; padding: 6px 4px; border: 0; background: transparent; }
-#interactive-experience .interactive-color-button::after { content: attr(data-name); color: #9ea2a9; font-family: var(--interactive-mono); font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; transition: color .2s ease; }
-#interactive-experience .interactive-color-button[aria-pressed="true"]::after { color: var(--interactive-gold-strong); }
-#interactive-experience .interactive-color-button[data-preview="true"] .interactive-color-swatch { border-color: rgb(235 236 238 / 65%); }
-#interactive-experience .interactive-color-swatch { width: 34px; height: 34px; border: 1px solid rgb(235 236 238 / 30%); border-radius: 50%; transition: transform .24s cubic-bezier(.3, 1.4, .5, 1), border-color .2s ease, box-shadow .2s ease; }
-#interactive-experience .interactive-color-button[aria-pressed="true"] .interactive-color-swatch { border-color: var(--interactive-gold-strong); box-shadow: 0 0 0 3px rgb(215 218 224 / 26%), 0 0 16px rgb(215 218 224 / 28%); transform: scale(1.16); animation: color-pop .38s cubic-bezier(.3, 1.5, .5, 1); }
-@keyframes color-pop { 0% { transform: scale(.72); } 60% { transform: scale(1.28); } 100% { transform: scale(1.16); } }
-#interactive-experience button[data-color="silver"] .interactive-color-swatch { background: linear-gradient(135deg, silver 0%, gainsboro 25%, gray 49%, whitesmoke 66%, darkgray 100%); }
-#interactive-experience button[data-color="green"] .interactive-color-swatch { background: #34EB61; }
-#interactive-experience button[data-color="orange"] .interactive-color-swatch { background: #EB5234; }
-#interactive-experience button[data-color="lime"] .interactive-color-swatch { background: #DBF054; }
-#interactive-experience .interactive-color-copy { position: absolute; bottom: calc(100% + 12px); right: 0; display: grid; gap: 5px; width: max-content; padding: 10px 13px; border: 1px solid var(--interactive-line); border-radius: 4px; background: rgb(18 19 21 / 96%); box-shadow: 0 12px 30px rgb(0 0 0 / 45%); font-size: 10px; visibility: hidden; pointer-events: none; }
-#interactive-experience .interactive-color-copy span + span { color: var(--interactive-muted); font: 9px/1.5 var(--interactive-mono); }
-#interactive-experience .interactive-color-button:focus-visible .interactive-color-copy { visibility: visible; }
+#interactive-experience .interactive-color-options { display: flex; gap: 10px; }
+#interactive-experience .interactive-color-button { position: relative; display: flex; align-items: center; justify-content: center; min-width: 104px; height: 52px; padding: 0 20px; border: 2px solid rgb(255 255 255 / 24%); border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 14px; font-weight: 700; letter-spacing: .03em; box-shadow: 0 4px 14px rgb(0 0 0 / 28%); transition: transform .2s cubic-bezier(.3, 1.2, .5, 1), border-color .2s ease, box-shadow .2s ease; }
+#interactive-experience .interactive-color-button[data-preview="true"] { border-color: rgb(255 255 255 / 65%); }
+#interactive-experience button[data-color="silver"].interactive-color-button { background: linear-gradient(150deg, #e2e4e7 0%, #c3c7cc 55%, #a9adb3 100%); color: #17191d; }
+#interactive-experience button[data-color="green"].interactive-color-button { background: #34eb61; color: #0c2413; }
+#interactive-experience button[data-color="orange"].interactive-color-button { background: #eb5234; color: #fff; }
+#interactive-experience button[data-color="lime"].interactive-color-button { background: #dbf054; color: #17191d; }
+#interactive-experience .interactive-color-button[aria-pressed="true"] { border-color: #fff; box-shadow: 0 0 0 3px rgb(255 255 255 / 38%), 0 8px 22px rgb(0 0 0 / 42%); transform: translateY(-3px); }
+#interactive-experience .interactive-color-button[aria-pressed="true"]::after { content: ""; position: absolute; top: -7px; right: -7px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 5px rgb(0 0 0 / 45%); -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="white"/><path d="M4.5 8.2 7 10.5 11.5 5.5" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat; mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="white"/><path d="M4.5 8.2 7 10.5 11.5 5.5" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat; }
 #interactive-experience .interactive-control-heading { display: grid; gap: 4px; font-size: 11px; white-space: nowrap; }
 #interactive-experience .interactive-control-label { color: var(--interactive-muted); font-family: var(--interactive-mono); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
 #interactive-experience .interactive-state-readout { font: 600 12px/1.6 var(--interactive-mono); font-variant-numeric: tabular-nums; }
@@ -114,14 +102,14 @@ body[data-presentation="suspended"] #interactive-stage { visibility: hidden; }
 #interactive-experience #hood-note { position: absolute; right: 0; bottom: calc(100% + 10px); width: min(300px, calc(100vw - 32px)); padding: 14px; border: 1px solid var(--interactive-line); border-radius: 4px; background: rgb(18 19 21 / 96%); box-shadow: 0 12px 30px rgb(0 0 0 / 45%); color: var(--interactive-muted); font-size: 11px; line-height: 1.8; }
 #interactive-experience .interactive-footer { left: var(--safe-left); right: var(--safe-right); bottom: var(--edge-bottom); }
 #interactive-experience .interactive-footer-row { display: flex; align-items: center; justify-content: space-between; min-height: 44px; gap: 10px; }
-#interactive-experience #interaction-hint { color: #ced1d6; font-family: var(--interactive-mono); font-size: 11px; font-weight: 600; line-height: 1.5; letter-spacing: .22em; text-transform: uppercase; }
+#interactive-experience #interaction-hint { color: #ced1d6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 12px; font-weight: 500; line-height: 1.5; letter-spacing: .04em; }
 #interactive-experience progress { appearance: none; -webkit-appearance: none; display: block; width: 100%; height: 2px; margin: 0; border: 0; border-radius: 0; background: var(--interactive-line); color: var(--interactive-gold); accent-color: var(--interactive-gold); }
 #interactive-experience progress::-webkit-progress-bar { background: var(--interactive-line); }
 #interactive-experience progress::-webkit-progress-value { background: var(--interactive-gold); }
 #interactive-experience progress::-moz-progress-bar { background: var(--interactive-gold); }
 #interactive-experience #section-progress { height: 1px; }
 #interactive-experience #asset-note { position: relative; flex: 0 0 auto; }
-#interactive-experience #asset-note summary { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 0 8px 8px; color: #ced1d6; font-family: var(--interactive-mono); font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; list-style: none; cursor: pointer; transition: color .2s ease; }
+#interactive-experience #asset-note summary { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 0 8px 8px; color: #ced1d6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .03em; list-style: none; cursor: pointer; transition: color .2s ease; }
 #interactive-experience #asset-note summary::-webkit-details-marker { display: none; }
 #interactive-experience .interactive-note-mark { color: var(--interactive-gold); font-size: 17px; transition: transform .25s ease; }
 #interactive-experience #asset-note[open] .interactive-note-mark { transform: rotate(45deg); }
@@ -143,7 +131,7 @@ body[data-presentation="suspended"] #interactive-experience #model-loading { vis
 #interactive-experience .interactive-outline-button { padding: 9px 8px; border: 0; background: transparent; font-family: var(--interactive-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; }
 #interactive-experience #part-card { right: var(--safe-right); bottom: calc(var(--safe-bottom) + 16px); z-index: 5; width: 280px; max-width: calc(100% - var(--safe-left) - var(--safe-right)); max-height: min(300px, calc(100% - var(--safe-top) - var(--safe-bottom) - 28px)); padding: 15px 17px; border: 1px solid var(--interactive-line); border-radius: 4px; background: rgb(18 19 21 / 96%); box-shadow: 0 16px 40px rgb(0 0 0 / 50%); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 #interactive-experience .interactive-part-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-#interactive-experience #part-name { min-width: 0; margin-top: 5px; font-family: var(--interactive-serif); font-size: 19px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+#interactive-experience #part-name { min-width: 0; margin-top: 5px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 19px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
 #interactive-experience #part-close { flex: 0 0 44px; width: 44px; margin: -9px -11px 0 0; padding: 0; border: 0; background: transparent; color: var(--interactive-muted); font-size: 26px; line-height: 1; transition: color .2s ease; }
 #interactive-experience .interactive-part-facts { display: grid; gap: 6px; margin-top: 10px; font-size: 11px; line-height: 1.8; }
 #interactive-experience .interactive-part-facts > div { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; }
@@ -161,9 +149,7 @@ body[data-presentation="suspended"] #interactive-experience #model-loading { vis
   #interactive-experience #chapter-nav button[aria-current="step"]:hover { color: #121417; }
   #interactive-experience #chapter-nav button[aria-current="step"]:hover .chapter-nav-index { color: rgb(20 22 25 / 62%); }
   #interactive-experience .interactive-text-button:hover { color: var(--interactive-gold-strong); text-decoration-color: var(--interactive-gold-strong); }
-  #interactive-experience .interactive-color-button:hover { border-color: var(--interactive-muted); }
-  #interactive-experience .interactive-color-button:hover::after { color: var(--interactive-text); }
-  #interactive-experience .interactive-color-button:hover .interactive-color-copy { visibility: visible; }
+  #interactive-experience .interactive-color-button:hover { border-color: rgb(255 255 255 / 55%); }
   #interactive-experience .interactive-segmented button:hover { color: var(--interactive-text); }
   #interactive-experience .interactive-segmented button[aria-pressed="true"]:hover { color: #121417; }
 }
@@ -205,9 +191,8 @@ body[data-presentation="suspended"] #interactive-experience #model-loading { vis
   #interactive-experience .interactive-color-readout { gap: 4px; }
   #interactive-experience .interactive-paint-mode { position: absolute; left: 0; top: 100%; height: 44px; }
   #interactive-experience .interactive-paint-mode button { font-size: 10px; padding-inline: 0; }
-  #interactive-experience .interactive-color-options { gap: 0; }
-  #interactive-experience .interactive-color-button::after { display: none; }
-  #interactive-experience .interactive-color-swatch { width: 28px; height: 28px; }
+  #interactive-experience .interactive-color-options { gap: 7px; }
+  #interactive-experience .interactive-color-button { min-width: 0; height: 44px; padding: 0 13px; font-size: 12px; border-radius: 10px; }
   #interactive-experience .interactive-control-panel { gap: 6px; }
   #interactive-experience #hood-controls,
   #interactive-experience #structure-controls { flex: 1 1 auto; justify-content: flex-end; }
@@ -329,13 +314,14 @@ body[data-presentation="realtime"] #interactive-experience :is(.interactive-cont
 }
 
 /* Keep the focus on the car; retain the original control and viewport geometry. */
-#stage :is(.signature-caption, .quality-label, .frame-readout, .availability, .timeline-tick, .pending-frame),
+#stage :is(.quality-label, .frame-readout, .availability, .timeline-tick, .pending-frame),
 #stage:not([data-status="error"]):not([data-status="unavailable"]) :is(#playback-state, #status-indicator) {
   visibility: hidden;
 }
-#interactive-experience :is(.interactive-realtime, #selected-color-code, #color-mode-label, .interactive-state-readout, .interactive-control-label, #hood-note-details) {
+#interactive-experience :is(.interactive-realtime, #color-mode-label, .interactive-state-readout, .interactive-control-label, #hood-note-details) {
   visibility: hidden !important;
 }
+#interactive-experience #selected-color-code { display: none !important; }
 #stage .availability[data-error="true"] { visibility: visible; }
 
 /* A full-screen source-camera anchor; all pixels come from the shared canvas. */
