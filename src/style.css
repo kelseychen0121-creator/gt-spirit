@@ -241,11 +241,11 @@ progress::-moz-progress-bar { background: var(--signal); }
 #stage[data-reveal-text="true"] #reveal-text .reveal-year { transition-delay: .5s; }
 #reveal-text .reveal-brand { top: max(92px, 12%); left: max(34px, env(safe-area-inset-left)); display: grid; gap: 16px; text-shadow: 0 1px 3px rgb(5 6 8 / 70%), 0 0 16px rgb(5 6 8 / 35%); }
 #reveal-text .reveal-brand-make { font-family: var(--mono); color: var(--signal-strong); font-size: 14px; font-weight: 600; letter-spacing: .34em; }
-#reveal-text .reveal-tagline { bottom: max(116px, 15%); left: 50%; transform: translateX(-50%); font-family: var(--sans); font-size: clamp(17px, 2.4vw, 28px); font-weight: 700; letter-spacing: .42em; white-space: nowrap; color: #f4f4f6; text-shadow: 0 1px 3px rgb(5 6 8 / 70%), 0 0 18px rgb(5 6 8 / 40%); }
-#stage[data-reveal-text="true"] #reveal-text .reveal-tagline { transition-delay: .25s; }
+#reveal-text .reveal-tagline { top: 63%; left: 50%; transform: translateX(-50%) translateY(16px); font-family: var(--sans); font-size: clamp(17px, 2.4vw, 28px); font-weight: 700; letter-spacing: .42em; white-space: nowrap; color: #f4f4f6; text-shadow: 0 1px 3px rgb(5 6 8 / 70%), 0 0 18px rgb(5 6 8 / 40%); }
+#stage[data-reveal-text="true"] #reveal-text .reveal-tagline { transition-delay: .25s; transform: translateX(-50%) translateY(0); }
 #reveal-text .reveal-year { bottom: max(120px, 17%); left: max(34px, env(safe-area-inset-left)); color: var(--signal-strong); font: 600 13px/1.4 var(--mono); letter-spacing: .3em; text-shadow: 0 1px 3px rgb(5 6 8 / 70%); }
 @media (max-width: 620px) {
   #reveal-text .reveal-brand-make { font-size: 11px; }
-  #reveal-text .reveal-tagline { font-size: 13px; letter-spacing: .26em; bottom: max(116px, 17%); }
+  #reveal-text .reveal-tagline { font-size: 13px; letter-spacing: .26em; top: 62%; }
   #reveal-text .reveal-year { font-size: 11px; bottom: max(104px, 15%); }
 }
