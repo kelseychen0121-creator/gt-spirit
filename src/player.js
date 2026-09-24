@@ -1,5 +1,5 @@
 const ASSETS_BASE = (typeof document !== 'undefined' && document.baseURI) || new URL('../', import.meta.url);
-const MANIFEST_URL = new URL('scene.json?v=20260924d', ASSETS_BASE);
+const MANIFEST_URL = new URL('scene.json?v=20260924f', ASSETS_BASE);
 const PIXELS_PER_FRAME = 22;
 const fullscreenRoot = document.documentElement;
 const byId = (id) => document.getElementById(id);
