@@ -2,7 +2,7 @@ import * as THREE from '../vendor/three/build/three.module.js';
 
 const ASSETS_BASE = (typeof document !== 'undefined' && document.baseURI) || new URL('../', import.meta.url);
 const MANIFEST_URL = new URL('models/intro-cloth.json', ASSETS_BASE);
-const SOURCE_HASH = '6a806fe4ce2f32af26f71774a52dbbc81ce7f33304e565d818985e3f2c12ddaa';
+const SOURCE_HASH = 'b518641aa739815d2dd0477ac8213ba5e52fb63751cdcffaf595c309f4ed7ed4';
 const FIRST = 30, LAST = 504, VERTICES = 41745, TRIANGLES = 82656;
 const HASH = /^[a-f0-9]{64}$/;
 // Thin rigid trim (wipers, window edges) was never part of the cloth collision set and
@@ -237,7 +237,7 @@ export class IntroCloth {
       const source = manifest.material;
       const linear = (values) => new THREE.Color().setRGB(...values, THREE.LinearSRGBColorSpace);
       this._material = new THREE.MeshPhysicalMaterial({
-        color: linear(source.baseColor), roughness: source.roughness, metalness: source.metalness,
+        color: new THREE.Color('#bfb3e6'), roughness: source.roughness, metalness: source.metalness,
         ior: source.ior, sheen: source.sheen, sheenRoughness: source.sheenRoughness,
         sheenColor: linear([1, 1, 1]), side: THREE.DoubleSide,
       });

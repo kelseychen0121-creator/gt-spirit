@@ -1,5 +1,5 @@
 const ASSETS_BASE = (typeof document !== 'undefined' && document.baseURI) || new URL('../', import.meta.url);
-const CAMERA_URL = new URL('scene.json', ASSETS_BASE);
+const CAMERA_URL = new URL('scene.json?v=20260924c', ASSETS_BASE);
 const matrixOK = (value) => Array.isArray(value) && value.length === 16 && value.every(Number.isFinite);
 
 export function containedSourceRect(imageRect, stageRect, width, height) {

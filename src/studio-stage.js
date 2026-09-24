@@ -23,6 +23,8 @@ const STAGE_PRESENTATION = Object.freeze({
   floorReflection: 0.06,
   background: Object.freeze([0.012, 0.011, 0.0095]),
 });
+// Light lavender tint for the reveal cloth (static stage cover + shared animated material).
+const CLOTH_TINT = '#bfb3e6';
 const FLOOR_REFLECTION_GLSL = `
   uniform sampler2D stageReflection;
   uniform float stageReflectionReady;
@@ -917,6 +919,7 @@ export class StudioStage {
     });
     material.name = `Stage:${record.name}:${object.name}`;
     material.userData = { sourceMaterial: record.name, stageOnly: true, stageRole: object.role };
+    if (role === 'cloth') material.color.set(CLOTH_TINT);
     const procedural = record.procedural;
     const shadow = object.role !== 'led';
     let uniforms = {};
