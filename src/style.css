@@ -261,7 +261,10 @@ progress::-moz-progress-bar { background: var(--signal); }
 #stage[data-reveal-text="true"] #reveal-text > div { opacity: 1; transform: translateY(0); }
 #stage[data-reveal-text="true"] #reveal-text .reveal-tagline { transition-delay: .25s; }
 #reveal-text .reveal-tagline { bottom: max(96px, 14%); left: max(34px, env(safe-area-inset-left)); font-family: 'Inter', var(--sans); font-size: clamp(12px, 1.15vw, 15px); font-weight: 400; letter-spacing: .04em; line-height: 1.75; color: #f4f4f6; text-shadow: 0 1px 3px rgb(5 6 8 / 70%), 0 0 18px rgb(5 6 8 / 40%); }
+#reveal-text .reveal-tagline-title { font-family: 'Inter', var(--sans); font-size: clamp(28px, 4.2vw, 62px); font-weight: 400; letter-spacing: .01em; line-height: 1.08; margin: 0 0 16px; }
+#reveal-text .reveal-tagline-title::after { content: ""; display: block; width: 96px; height: 1px; margin-top: 16px; background: #f4f4f6; opacity: .75; }
 #reveal-text .reveal-tagline p + p { margin-top: 12px; }
 @media (max-width: 620px) {
   #reveal-text .reveal-tagline { font-size: 11px; }
+  #reveal-text .reveal-tagline-title { font-size: 26px; }
 }
